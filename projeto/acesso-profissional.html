@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Salão Fácil - Área Profissional</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background-color: #111111;
+
+            color: #F6F1ED;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px 20px;
+        }
+
+
+        /* ==============================
+           CARD
+        ============================== */
+
+        .professional-container {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            min-height: 560px;
+
+            background-color: #151515;
+
+            border: 1px solid #333333;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.45);
+
+            display: flex;
+
+            flex-direction: column;
+
+            overflow: hidden;
+        }
+
+
+        /* ==============================
+           LOGO
+        ============================== */
+
+        .logo-area {
+
+            text-align: center;
+
+            padding: 30px 20px 22px;
+
+            border-bottom: 1px solid #292929;
+        }
+
+
+        .logo-icon {
+
+            width: 38px;
+            height: 38px;
+
+            border: 1px solid #D9A6A0;
+
+            border-radius: 50%;
+
+            margin: 0 auto 10px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            color: #D9A6A0;
+
+            font-size: 17px;
+        }
+
+
+        .logo {
+
+            font-family: Georgia, serif;
+
+            font-size: 27px;
+
+            color: #F6F1ED;
+
+            font-weight: bold;
+        }
+
+
+        .slogan {
+
+            margin-top: 6px;
+
+            color: #99918D;
+
+            font-size: 10px;
+        }
+
+
+        /* ==============================
+           FORMULÁRIO
+        ============================== */
+
+        .form-area {
+
+            padding: 30px 30px 25px;
+
+            flex: 1;
+        }
+
+
+        h1 {
+
+            font-family: Georgia, serif;
+
+            font-size: 30px;
+
+            font-weight: normal;
+
+            line-height: 1.2;
+
+            margin-bottom: 10px;
+
+            color: #F6F1ED;
+        }
+
+
+        .description {
+
+            color: #99918D;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* ==============================
+           CAMPOS
+        ============================== */
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        label {
+
+            display: block;
+
+            color: #D0CBC8;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            height: 45px;
+
+            background-color: #111111;
+
+            border: 1px solid #333333;
+
+            border-radius: 6px;
+
+            padding: 0 13px;
+
+            color: #F6F1ED;
+
+            outline: none;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        input::placeholder {
+
+            color: #66605D;
+        }
+
+
+        input:focus {
+
+            border-color: #D9A6A0;
+
+            box-shadow:
+                0 0 0 2px rgba(217, 166, 160, 0.08);
+        }
+
+
+        /* ==============================
+           SENHA
+        ============================== */
+
+        .password-box {
+
+            position: relative;
+        }
+
+
+        .password-box input {
+
+            padding-right: 45px;
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 12px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #777;
+
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+
+        .password-toggle:hover {
+
+            color: #D9A6A0;
+        }
+
+
+        /* ==============================
+           ESQUECI
+        ============================== */
+
+        .forgot-password {
+
+            text-align: right;
+
+            margin: 4px 0 22px;
+
+            font-size: 9px;
+        }
+
+
+        .forgot-password a {
+
+            color: #D9A6A0;
+
+            text-decoration: none;
+        }
+
+
+        .forgot-password a:hover {
+
+            color: #F6F1ED;
+        }
+
+
+        /* ==============================
+           BOTÃO
+        ============================== */
+
+        .login-btn {
+
+            width: 100%;
+
+            height: 46px;
+
+            background-color: #D9A6A0;
+
+            border: none;
+
+            border-radius: 30px;
+
+            color: #111111;
+
+            font-weight: bold;
+
+            font-size: 11px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .login-btn:hover {
+
+            background-color: #F6F1ED;
+
+            box-shadow:
+                0 0 20px rgba(217, 166, 160, 0.15);
+        }
+
+
+        .login-btn:active {
+
+            transform: scale(0.99);
+        }
+
+
+        /* ==============================
+           AJUDA
+        ============================== */
+
+        .access-help {
+
+            text-align: center;
+
+            margin-top: 17px;
+
+            color: #777;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+        }
+
+
+        .access-help span {
+
+            color: #D9A6A0;
+        }
+
+
+        /* ==============================
+           VOLTAR
+        ============================== */
+
+        .back {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-size: 9px;
+        }
+
+
+        .back a {
+
+            color: #777;
+
+            text-decoration: none;
+        }
+
+
+        .back a:hover {
+
+            color: #D9A6A0;
+        }
+
+
+        /* ==============================
+           RODAPÉ
+        ============================== */
+
+        .professional {
+
+            text-align: center;
+
+            padding: 18px 15px;
+
+            border-top: 1px solid #292929;
+
+            background-color: #0D0D0D;
+
+            color: #777;
+
+            font-size: 9px;
+        }
+
+
+        .professional span {
+
+            color: #D9A6A0;
+        }
+
+
+        /* ==============================
+           MENSAGEM
+        ============================== */
+
+        .message {
+
+            display: none;
+
+            margin-top: 13px;
+
+            padding: 10px;
+
+            text-align: center;
+
+            border-radius: 6px;
+
+            font-size: 10px;
+        }
+
+
+        .message.error {
+
+            display: block;
+
+            background: rgba(150, 30, 30, 0.15);
+
+            border: 1px solid #8b3030;
+
+            color: #e58c8c;
+        }
+
+
+        .message.success {
+
+            display: block;
+
+            background: rgba(40, 120, 60, 0.15);
+
+            border: 1px solid #3c8b50;
+
+            color: #8cd69a;
+        }
+
+
+        /* ==============================
+           CELULAR
+        ============================== */
+
+        @media (max-width: 480px) {
+
+            body {
+
+                padding: 0;
+
+                min-height: 100vh;
+
+                align-items: stretch;
+            }
+
+
+            .professional-container {
+
+                width: 100%;
+
+                max-width: none;
+
+                min-height: 100vh;
+
+                border: none;
+
+                border-radius: 0;
+
+                box-shadow: none;
+            }
+
+
+            .logo-area {
+
+                padding-top: 35px;
+
+                padding-bottom: 22px;
+            }
+
+
+            .form-area {
+
+                padding: 28px 22px 22px;
+            }
+
+
+            h1 {
+
+                font-size: 28px;
+            }
+
+
+            .description {
+
+                font-size: 12px;
+
+                margin-bottom: 27px;
+            }
+
+
+            input {
+
+                height: 47px;
+
+                font-size: 12px;
+            }
+
+
+            .login-btn {
+
+                height: 47px;
+
+                font-size: 11px;
+            }
+
+
+            .professional {
+
+                padding: 17px;
+            }
+        }
+
+
+        @media (max-width: 360px) {
+
+            .form-area {
+
+                padding: 22px 18px;
+            }
+
+
+            .logo {
+
+                font-size: 24px;
+            }
+
+
+            h1 {
+
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="professional-container">
+
+
+        <section class="logo-area">
+
+            <div class="logo-icon">
+                ✂
+            </div>
+
+
+            <div class="logo">
+                Salão Fácil
+            </div>
+
+
+            <div class="slogan">
+                Seu horário, do seu jeito.
+            </div>
+
+        </section>
+
+
+        <section class="form-area">
+
+
+            <h1>
+                Área profissional
+            </h1>
+
+
+            <p class="description">
+                Acesse sua conta para gerenciar
+                seus atendimentos e agendamentos.
+            </p>
+
+
+            <form id="professionalForm">
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="senha"
+                            placeholder="Digite sua senha"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="eye"
+                            onclick="mostrarSenha()"
+                            aria-label="Mostrar senha"
+                        >
+
+                            ◉
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="forgot-password">
+
+                    <a href="#">
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+
+                    Entrar
+
+                </button>
+
+
+                <div
+                    id="message"
+                    class="message"
+                    aria-live="polite"
+                >
+                </div>
+
+
+            </form>
+
+
+            <div class="access-help">
+
+                Não possui acesso?
+                <span>Fale com o administrador.</span>
+
+            </div>
+
+
+            <!-- VOLTA DIRETAMENTE PARA index.html -->
+
+            <div class="back">
+
+                <a href="index.html">
+                    ← Voltar para área da cliente
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+        <footer class="professional">
+
+            Área exclusiva para
+            <span>profissionais e administradores</span>.
+
+        </footer>
+
+
+    </main>
+
+
+    <script>
+
+        function mostrarSenha() {
+
+            const senha =
+                document.getElementById("senha");
+
+            const eye =
+                document.getElementById("eye");
+
+
+            if (senha.type === "password") {
+
+                senha.type = "text";
+
+                eye.textContent = "◉";
+
+                eye.setAttribute(
+                    "aria-label",
+                    "Ocultar senha"
+                );
+
+            } else {
+
+                senha.type = "password";
+
+                eye.textContent = "◉";
+
+                eye.setAttribute(
+                    "aria-label",
+                    "Mostrar senha"
+                );
+
+            }
+
+        }
+
+
+        document
+            .getElementById("professionalForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                    const senha =
+                        document
+                        .getElementById("senha")
+                        .value
+                        .trim();
+
+
+                    const message =
+                        document
+                        .getElementById("message");
+
+
+                    message.className =
+                        "message";
+
+                    message.textContent = "";
+
+
+                    if (!email || !senha) {
+
+                        message.textContent =
+                            "Preencha todos os campos.";
+
+                        message.className =
+                            "message error";
+
+                        return;
+                    }
+
+
+                    if (!email.includes("@")) {
+
+                        message.textContent =
+                            "Digite um e-mail válido.";
+
+                        message.className =
+                            "message error";
+
+                        return;
+                    }
+
+
+                    message.textContent =
+                        "Acesso validado!";
+
+                    message.className =
+                        "message success";
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

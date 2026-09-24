@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Salão Fácil - Agenda</title>
+
+    <style>
+
+        /* ==============================
+           CONFIGURAÇÕES GERAIS
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    rgba(17, 17, 17, 0.92),
+                    rgba(17, 17, 17, 0.97)
+                ),
+                url("img/salao.jpg") center / cover no-repeat;
+
+            color: #F6F1ED;
+
+            padding: 30px;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* ==============================
+           CONTAINER
+        ============================== */
+
+        .agenda-container {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            background: #111111;
+
+            border: 1px solid #292929;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.45);
+
+            overflow: hidden;
+        }
+
+
+        /* ==============================
+           CABEÇALHO
+        ============================== */
+
+        .header {
+            min-height: 75px;
+
+            padding: 0 28px;
+
+            background: #111111;
+
+            border-bottom: 1px solid #292929;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #D9A6A0;
+
+            font-size: 20px;
+
+            border: none;
+        }
+
+
+        .logo {
+            font-family: Georgia, serif;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #F6F1ED;
+        }
+
+
+        .header-right {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+
+        .user-name {
+            color: #99918D;
+
+            font-size: 11px;
+
+            text-align: right;
+        }
+
+
+        .user-name strong {
+            display: block;
+
+            color: #F6F1ED;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+
+        .logout {
+            color: #D9A6A0;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            border-left: 1px solid #292929;
+
+            padding-left: 18px;
+
+            transition: 0.3s;
+        }
+
+
+        .logout:hover {
+            color: #F6F1ED;
+        }
+
+
+        /* ==============================
+           CONTEÚDO
+        ============================== */
+
+        .content {
+            padding: 32px;
+        }
+
+
+        .page-title {
+            margin-bottom: 28px;
+        }
+
+
+        .page-title h1 {
+            font-family: Georgia, serif;
+
+            font-size: 30px;
+
+            font-weight: normal;
+
+            color: #F6F1ED;
+
+            margin-bottom: 8px;
+        }
+
+
+        .page-title p {
+            color: #99918D;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ==============================
+           BARRA DE CONTROLE
+        ============================== */
+
+        .toolbar {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+
+            gap: 15px;
+        }
+
+
+        .date-navigation {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        .nav-button {
+            width: 36px;
+            height: 36px;
+
+            border: 1px solid #333333;
+
+            background: #151515;
+
+            color: #D9A6A0;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 20px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-button:hover {
+            border-color: #D9A6A0;
+
+            background: rgba(217, 166, 160, 0.08);
+        }
+
+
+        .current-date {
+            min-width: 190px;
+
+            text-align: center;
+
+            color: #F6F1ED;
+
+            font-family: Georgia, serif;
+
+            font-size: 17px;
+        }
+
+
+        .today-button {
+            height: 36px;
+
+            padding: 0 15px;
+
+            background: transparent;
+
+            border: 1px solid #444444;
+
+            color: #99918D;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            transition: 0.3s;
+        }
+
+
+        .today-button:hover {
+            border-color: #D9A6A0;
+
+            color: #D9A6A0;
+        }
+
+
+        /* ==============================
+           BOTÃO BLOQUEAR
+        ============================== */
+
+        .block-button {
+            height: 40px;
+
+            padding: 0 19px;
+
+            background: #D9A6A0;
+
+            border: none;
+
+            border-radius: 25px;
+
+            color: #111111;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .block-button:hover {
+            background: #F6F1ED;
+
+            box-shadow:
+                0 5px 18px rgba(217, 166, 160, 0.15);
+        }
+
+
+        /* ==============================
+           AGENDA
+        ============================== */
+
+        .schedule {
+            border: 1px solid #292929;
+
+            border-radius: 7px;
+
+            background: #151515;
+
+            overflow: hidden;
+        }
+
+
+        .schedule-header {
+            display: grid;
+
+            grid-template-columns:
+                90px 1fr;
+
+            background: #191919;
+
+            border-bottom: 1px solid #292929;
+        }
+
+
+        .time-header {
+            border-right: 1px solid #292929;
+        }
+
+
+        .professional-header {
+            padding: 15px;
+
+            color: #99918D;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+        }
+
+
+        .schedule-body {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .schedule-row {
+            min-height: 88px;
+
+            display: grid;
+
+            grid-template-columns:
+                90px 1fr;
+
+            border-bottom: 1px solid #292929;
+        }
+
+
+        .schedule-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .time {
+            padding: 14px 10px;
+
+            color: #99918D;
+
+            font-size: 12px;
+
+            text-align: center;
+
+            border-right: 1px solid #292929;
+        }
+
+
+        .schedule-slot {
+            position: relative;
+
+            padding: 9px;
+        }
+
+
+        /* ==============================
+           AGENDAMENTO
+        ============================== */
+
+        .appointment {
+            min-height: 68px;
+
+            background:
+                rgba(217, 166, 160, 0.10);
+
+            border-left:
+                4px solid #D9A6A0;
+
+            border-radius: 5px;
+
+            padding: 11px 14px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .appointment:hover {
+            background:
+                rgba(217, 166, 160, 0.16);
+
+            border-left-color: #F6F1ED;
+        }
+
+
+        .appointment-time {
+            color: #D9A6A0;
+
+            font-size: 11px;
+
+            font-weight: 500;
+
+            margin-bottom: 5px;
+        }
+
+
+        .appointment-client {
+            color: #F6F1ED;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+
+        .appointment-service {
+            color: #B8B0AC;
+
+            font-size: 12px;
+
+            line-height: 1.4;
+        }
+
+
+        /* ==============================
+           HORÁRIO LIVRE
+        ============================== */
+
+        .empty-slot {
+            height: 68px;
+
+            border: 1px dashed #333333;
+
+            border-radius: 5px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding-left: 14px;
+
+            color: #66605D;
+
+            font-size: 11px;
+
+            transition: 0.3s;
+        }
+
+
+        .empty-slot:hover {
+            border-color: #555555;
+
+            color: #99918D;
+        }
+
+
+        /* ==============================
+           HORÁRIO BLOQUEADO
+        ============================== */
+
+        .blocked-slot {
+            height: 68px;
+
+            border-radius: 5px;
+
+            background: #101010;
+
+            border: 1px solid #292929;
+
+            display: flex;
+
+            align-items: center;
+
+            padding-left: 14px;
+
+            color: #5E5957;
+
+            font-size: 11px;
+        }
+
+
+        /* ==============================
+           LEGENDA
+        ============================== */
+
+        .legend {
+            display: flex;
+
+            gap: 22px;
+
+            margin-top: 16px;
+
+            color: #99918D;
+
+            font-size: 10px;
+        }
+
+
+        .legend-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+        }
+
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 2px;
+        }
+
+
+        .dot-appointment {
+            background: #D9A6A0;
+        }
+
+
+        .dot-free {
+            border: 1px solid #555555;
+        }
+
+
+        .dot-blocked {
+            background: #292929;
+        }
+
+
+        /* ==============================
+           MODAL
+        ============================== */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.78);
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 100;
+        }
+
+
+        .modal.active {
+            display: flex;
+        }
+
+
+        .modal-content {
+            width: 100%;
+
+            max-width: 400px;
+
+            background: #111111;
+
+            border: 1px solid #292929;
+
+            border-radius: 8px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.65);
+        }
+
+
+        .modal-content h2 {
+            font-family: Georgia, serif;
+
+            font-weight: normal;
+
+            font-size: 23px;
+
+            color: #F6F1ED;
+
+            margin-bottom: 8px;
+        }
+
+
+        .modal-description {
+            color: #99918D;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            margin-bottom: 22px;
+        }
+
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+
+        label {
+            display: block;
+
+            color: #B8B0AC;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+            margin-bottom: 7px;
+        }
+
+
+        input,
+        select {
+            width: 100%;
+
+            height: 42px;
+
+            background: #151515;
+
+            border: 1px solid #333333;
+
+            border-radius: 5px;
+
+            padding: 0 12px;
+
+            color: #F6F1ED;
+
+            outline: none;
+
+            font-size: 12px;
+
+            transition: 0.2s;
+        }
+
+
+        input:focus,
+        select:focus {
+            border-color: #D9A6A0;
+
+            box-shadow:
+                0 0 0 2px rgba(217, 166, 160, 0.08);
+        }
+
+
+        .modal-buttons {
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+
+        .cancel-button {
+            flex: 1;
+
+            height: 42px;
+
+            background: transparent;
+
+            border: 1px solid #444444;
+
+            color: #99918D;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            transition: 0.3s;
+        }
+
+
+        .cancel-button:hover {
+            color: #F6F1ED;
+
+            border-color: #666666;
+        }
+
+
+        .confirm-button {
+            flex: 1;
+
+            height: 42px;
+
+            background: #D9A6A0;
+
+            border: none;
+
+            color: #111111;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .confirm-button:hover {
+            background: #F6F1ED;
+        }
+
+
+        /* ==============================
+           RESPONSIVIDADE
+        ============================== */
+
+        @media (max-width: 768px) {
+
+            body {
+                padding: 15px;
+            }
+
+
+            .content {
+                padding: 24px;
+            }
+
+
+            .toolbar {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .schedule-header,
+            .schedule-row {
+                grid-template-columns:
+                    65px 1fr;
+            }
+
+
+            .time {
+                padding: 14px 5px;
+
+                font-size: 11px;
+            }
+
+
+            .current-date {
+                min-width: 150px;
+            }
+
+
+            .appointment-client {
+                font-size: 14px;
+            }
+
+
+            .appointment-service {
+                font-size: 11px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 0;
+
+                background:
+                    linear-gradient(
+                        rgba(17, 17, 17, 0.94),
+                        rgba(17, 17, 17, 0.98)
+                    ),
+                    url("img/salao.jpg") center / cover no-repeat;
+            }
+
+
+            .agenda-container {
+                min-height: 100vh;
+
+                border: none;
+
+                border-radius: 0;
+
+                background: #111111;
+            }
+
+
+            .header {
+                padding: 0 18px;
+
+                min-height: 70px;
+            }
+
+
+            .logo {
+                font-size: 20px;
+            }
+
+
+            .user-name {
+                display: none;
+            }
+
+
+            .logout {
+                font-size: 10px;
+
+                padding-left: 14px;
+            }
+
+
+            .content {
+                padding: 22px 16px;
+            }
+
+
+            .page-title h1 {
+                font-size: 26px;
+            }
+
+
+            .page-title p {
+                font-size: 12px;
+            }
+
+
+            .toolbar {
+                gap: 13px;
+            }
+
+
+            .date-navigation {
+                width: 100%;
+
+                justify-content: center;
+            }
+
+
+            .current-date {
+                min-width: 145px;
+
+                font-size: 15px;
+            }
+
+
+            .block-button {
+                width: 100%;
+
+                height: 44px;
+
+                border-radius: 25px;
+            }
+
+
+            .schedule {
+                overflow-x: auto;
+            }
+
+
+            .schedule-header,
+            .schedule-row {
+                min-width: 520px;
+            }
+
+
+            .schedule-row {
+                min-height: 88px;
+            }
+
+
+            .appointment-client {
+                font-size: 15px;
+            }
+
+
+            .appointment-service {
+                font-size: 12px;
+            }
+
+
+            .appointment-time {
+                font-size: 10px;
+            }
+
+
+            .legend {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+
+            .modal-content {
+                padding: 23px;
+            }
+
+        }
+
+
+        @media (max-width: 350px) {
+
+            .content {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+
+            .page-title h1 {
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="agenda-container">
+
+
+        <header class="header">
+
+            <div class="brand">
+
+                <div class="logo-icon">
+                    ✂
+                </div>
+
+                <div class="logo">
+                    Salão Fácil
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <div class="user-name">
+
+                    Acesso profissional
+
+                    <strong>
+                        Bruna
+                    </strong>
+
+                </div>
+
+
+                <a
+                    href="acesso-profissional.html"
+                    class="logout">
+
+                    Sair
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+
+            <div class="page-title">
+
+                <h1>
+                    Minha agenda
+                </h1>
+
+                <p>
+                    Visualize seus atendimentos e gerencie
+                    seus horários disponíveis.
+                </p>
+
+            </div>
+
+
+            <div class="toolbar">
+
+
+                <div class="date-navigation">
+
+
+                    <button
+                        class="nav-button"
+                        type="button"
+                        id="previousDay">
+
+                        ‹
+
+                    </button>
+
+
+                    <div
+                        class="current-date"
+                        id="currentDate">
+
+                        10 de Setembro
+
+                    </div>
+
+
+                    <button
+                        class="nav-button"
+                        type="button"
+                        id="nextDay">
+
+                        ›
+
+                    </button>
+
+
+                    <button
+                        class="today-button"
+                        type="button"
+                        id="todayButton">
+
+                        Hoje
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="block-button"
+                    type="button"
+                    id="openBlockModal">
+
+                    + Bloquear horário
+
+                </button>
+
+            </div>
+
+
+            <div class="schedule">
+
+
+                <div class="schedule-header">
+
+                    <div class="time-header"></div>
+
+                    <div class="professional-header">
+
+                        Bruna — Agenda do dia
+
+                    </div>
+
+                </div>
+
+
+                <div class="schedule-body">
+
+
+                    <div class="schedule-row">
+
+                        <div class="time">
+                            09:00
+                        </div>
+
+
+                        <div class="schedule-slot">
+
+                            <div class="appointment">
+
+                                <div class="appointment-time">
+                                    09:00 — 10:30
+                                </div>
+
+                                <div class="appointment-client">
+                                    Ana Carolina
+                                </div>
+
+                                <div class="appointment-service">
+                                    Extensão de cílios
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="schedule-row">
+
+                        <div class="time">
+                            10:30
+                        </div>
+
+
+                        <div class="schedule-slot">
+
+                            <div class="empty-slot">
+                                Horário disponível
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="schedule-row">
+
+                        <div class="time">
+                            11:00
+                        </div>
+
+
+                        <div class="schedule-slot">
+
+                            <div class="appointment">
+
+                                <div class="appointment-time">
+                                    11:00 — 12:00
+                                </div>
+
+                                <div class="appointment-client">
+                                    Mariana Souza
+                                </div>
+
+                                <div class="appointment-service">
+                                    Manutenção de cílios
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="schedule-row">
+
+                        <div class="time">
+                            12:00
+                        </div>
+
+
+                        <div class="schedule-slot">
+
+                            <div class="blocked-slot">
+                                Horário bloqueado
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="schedule-row">
+
+                        <div class="time">
+                            13:00
+                        </div>
+
+
+                        <div class="schedule-slot">
+
+                            <div class="empty-slot">
+                                Horário disponível
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="schedule-row">
+
+                        <div class="time">
+                            14:00
+                        </div>
+
+
+                        <div class="schedule-slot">
+
+                            <div class="appointment">
+
+                                <div class="appointment-time">
+                                    14:00 — 15:30
+                                </div>
+
+                                <div class="appointment-client">
+                                    Juliana Alves
+                                </div>
+
+                                <div class="appointment-service">
+                                    Extensão de cílios
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="schedule-row">
+
+                        <div class="time">
+                            16:00
+                        </div>
+
+
+                        <div class="schedule-slot">
+
+                            <div class="empty-slot">
+                                Horário disponível
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="legend">
+
+                <div class="legend-item">
+
+                    <div class="legend-dot dot-appointment"></div>
+
+                    Agendamento
+
+                </div>
+
+
+                <div class="legend-item">
+
+                    <div class="legend-dot dot-free"></div>
+
+                    Disponível
+
+                </div>
+
+
+                <div class="legend-item">
+
+                    <div class="legend-dot dot-blocked"></div>
+
+                    Bloqueado
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <div
+        class="modal"
+        id="blockModal">
+
+
+        <div class="modal-content">
+
+
+            <h2>
+                Bloquear horário
+            </h2>
+
+
+            <p class="modal-description">
+
+                Escolha o período em que você
+                não estará disponível para atendimento.
+
+            </p>
+
+
+            <div class="form-group">
+
+                <label for="blockDate">
+                    Data
+                </label>
+
+                <input
+                    type="date"
+                    id="blockDate"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="startTime">
+                    Início
+                </label>
+
+                <input
+                    type="time"
+                    id="startTime"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="endTime">
+                    Fim
+                </label>
+
+                <input
+                    type="time"
+                    id="endTime"
+                >
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="closeModal">
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="confirm-button"
+                    id="confirmBlock">
+
+                    Bloquear horário
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* ==============================
+           DATA ATUAL
+        ============================== */
+
+        let currentDate = new Date();
+
+
+        const currentDateElement =
+            document.getElementById("currentDate");
+
+
+        function formatDate(date) {
+
+            const months = [
+                "Janeiro",
+                "Fevereiro",
+                "Março",
+                "Abril",
+                "Maio",
+                "Junho",
+                "Julho",
+                "Agosto",
+                "Setembro",
+                "Outubro",
+                "Novembro",
+                "Dezembro"
+            ];
+
+
+            return (
+                date.getDate() +
+                " de " +
+                months[date.getMonth()]
+            );
+        }
+
+
+        function updateDate() {
+
+            currentDateElement.textContent =
+                formatDate(currentDate);
+        }
+
+
+        document
+            .getElementById("previousDay")
+            .addEventListener(
+                "click",
+                function() {
+
+                    currentDate.setDate(
+                        currentDate.getDate() - 1
+                    );
+
+                    updateDate();
+                }
+            );
+
+
+        document
+            .getElementById("nextDay")
+            .addEventListener(
+                "click",
+                function() {
+
+                    currentDate.setDate(
+                        currentDate.getDate() + 1
+                    );
+
+                    updateDate();
+                }
+            );
+
+
+        document
+            .getElementById("todayButton")
+            .addEventListener(
+                "click",
+                function() {
+
+                    currentDate = new Date();
+
+                    updateDate();
+                }
+            );
+
+
+        const modal =
+            document.getElementById("blockModal");
+
+
+        const openModal =
+            document.getElementById("openBlockModal");
+
+
+        const closeModal =
+            document.getElementById("closeModal");
+
+
+        openModal.addEventListener(
+            "click",
+            function() {
+
+                modal.classList.add("active");
+
+            }
+        );
+
+
+        closeModal.addEventListener(
+            "click",
+            function() {
+
+                modal.classList.remove("active");
+
+            }
+        );
+
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (event.target === modal) {
+
+                    modal.classList.remove("active");
+
+                }
+
+            }
+        );
+
+
+        document
+            .getElementById("confirmBlock")
+            .addEventListener(
+                "click",
+                function() {
+
+                    const date =
+                        document
+                        .getElementById("blockDate")
+                        .value;
+
+
+                    const start =
+                        document
+                        .getElementById("startTime")
+                        .value;
+
+
+                    const end =
+                        document
+                        .getElementById("endTime")
+                        .value;
+
+
+                    if (!date || !start || !end) {
+
+                        alert(
+                            "Preencha a data e os horários."
+                        );
+
+                        return;
+                    }
+
+
+                    if (start >= end) {
+
+                        alert(
+                            "O horário final deve ser maior que o inicial."
+                        );
+
+                        return;
+                    }
+
+
+                    alert(
+                        "Horário bloqueado com sucesso!"
+                    );
+
+
+                    modal.classList.remove("active");
+
+                }
+            );
+
+
+        updateDate();
+
+    </script>
+
+</body>
+
+</html>
