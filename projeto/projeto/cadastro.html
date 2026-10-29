@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro | Salão Fácil</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =====================================================
+           PALETA DO LANDING
+        ===================================================== */
+
+        /*
+            Fundo principal: #111111
+            Fundo secundário: #0D0D0D
+            Card: #151515
+            Campo: #1B1B1B
+            Rosa principal: #D9A6A0
+            Rosa hover: #E6B8B2
+            Branco: #F6F1ED
+            Texto secundário: #99918D
+            Texto suave: #D0CBC8
+            Bordas: #292929
+        */
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+
+            font-family: "Inter", Arial, Helvetica, sans-serif;
+
+            background-color: #111111;
+
+            color: #F6F1ED;
+        }
+
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           PÁGINA
+        ===================================================== */
+
+        .page {
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px 20px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(217, 166, 160, 0.035),
+                    transparent 45%
+                ),
+                #111111;
+        }
+
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .register-container {
+
+            width: 100%;
+
+            max-width: 440px;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .brand {
+
+            text-align: center;
+
+            margin-bottom: 28px;
+        }
+
+
+        .brand-name {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #F6F1ED;
+
+            font-family: Georgia, serif;
+
+            font-size: 24px;
+
+            font-weight: bold;
+        }
+
+
+        .brand-icon {
+
+            color: #D9A6A0;
+
+            font-size: 27px;
+
+            line-height: 1;
+        }
+
+
+        .brand-subtitle {
+
+            margin-top: 6px;
+
+            color: #99918D;
+
+            font-size: 9px;
+
+            font-weight: 400;
+        }
+
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .register-card {
+
+            width: 100%;
+
+            padding: 26px 24px 20px;
+
+            background-color: #151515;
+
+            border: 1px solid #292929;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* =====================================================
+           CABEÇALHO
+        ===================================================== */
+
+        .card-title {
+
+            color: #F6F1ED;
+
+            font-family: Georgia, serif;
+
+            font-size: 25px;
+
+            font-weight: normal;
+
+            margin-bottom: 7px;
+        }
+
+
+        .card-description {
+
+            color: #99918D;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* =====================================================
+           FORMULÁRIO
+        ===================================================== */
+
+        .form {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .form-label {
+
+            margin-bottom: 6px;
+
+            color: #D0CBC8;
+
+            font-size: 9px;
+
+            font-weight: 500;
+        }
+
+
+        /* =====================================================
+           INPUT WRAPPER
+        ===================================================== */
+
+        .input-wrapper {
+
+            position: relative;
+
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
+
+        .input {
+
+            width: 100%;
+
+            height: 40px;
+
+            padding: 0 10px 0 35px;
+
+            color: #F6F1ED;
+
+            background-color: #1B1B1B;
+
+            border: 1px solid #292929;
+
+            border-radius: 5px;
+
+            outline: none;
+
+            font-size: 10px;
+
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                background-color 0.25s ease;
+        }
+
+
+        .input::placeholder {
+
+            color: #66605D;
+        }
+
+
+        .input:hover {
+
+            border-color: #3A3A3A;
+        }
+
+
+        .input:focus {
+
+            background-color: #1D1D1D;
+
+            border-color: #D9A6A0;
+
+            box-shadow:
+                0 0 0 2px rgba(217, 166, 160, 0.10);
+        }
+
+
+        /* =====================================================
+           ÍCONES
+        ===================================================== */
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 11px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 13px;
+
+            height: 13px;
+
+            color: #99918D;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           BOTÃO MOSTRAR SENHA
+        ===================================================== */
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 9px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #99918D;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 22px;
+
+            height: 22px;
+
+            transition: 0.2s;
+        }
+
+
+        .password-toggle:hover {
+
+            color: #D9A6A0;
+        }
+
+
+        .password-toggle svg {
+
+            width: 13px;
+
+            height: 13px;
+        }
+
+
+        /* =====================================================
+           ERRO
+        ===================================================== */
+
+        .form-group.error .input {
+
+            border-color: #C96F6F;
+        }
+
+
+        .form-group.error .input:focus {
+
+            box-shadow:
+                0 0 0 2px rgba(201, 111, 111, 0.10);
+        }
+
+
+        .error-message {
+
+            display: none;
+
+            margin-top: 5px;
+
+            color: #D98585;
+
+            font-size: 8px;
+
+            line-height: 1.3;
+        }
+
+
+        .form-group.error .error-message {
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           BOTÃO CADASTRAR
+        ===================================================== */
+
+        .submit-button {
+
+            width: 100%;
+
+            height: 42px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background-color: #D9A6A0;
+
+            color: #111111;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background-color 0.25s ease,
+                transform 0.1s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .submit-button:hover {
+
+            background-color: #E6B8B2;
+
+            box-shadow:
+                0 5px 18px rgba(217, 166, 160, 0.18);
+        }
+
+
+        .submit-button:active {
+
+            transform: translateY(1px);
+        }
+
+
+        .submit-button:focus-visible {
+
+            outline: 2px solid #F6F1ED;
+
+            outline-offset: 2px;
+        }
+
+
+        /* =====================================================
+           LINK LOGIN
+        ===================================================== */
+
+        .login-link {
+
+            margin-top: 14px;
+
+            text-align: center;
+
+            color: #99918D;
+
+            font-size: 9px;
+        }
+
+
+        .login-link a {
+
+            color: #D9A6A0;
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            transition: 0.2s;
+        }
+
+
+        .login-link a:hover {
+
+            color: #E6B8B2;
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            .page {
+
+                padding: 32px 20px;
+            }
+
+
+            .register-container {
+
+                max-width: 420px;
+            }
+
+
+            .register-card {
+
+                padding: 26px 22px 20px;
+            }
+
+
+            .brand {
+
+                margin-bottom: 24px;
+            }
+
+
+            .brand-name {
+
+                font-size: 22px;
+            }
+
+
+            .card-title {
+
+                font-size: 24px;
+            }
+
+
+            .card-description {
+
+                font-size: 10px;
+            }
+
+
+            .form {
+
+                gap: 14px;
+            }
+
+
+            .form-label {
+
+                font-size: 10px;
+            }
+
+
+            .input {
+
+                height: 42px;
+
+                font-size: 10px;
+            }
+
+
+            .submit-button {
+
+                height: 44px;
+
+                font-size: 10px;
+            }
+
+
+            .login-link {
+
+                font-size: 9px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 480px) {
+
+            .page {
+
+                min-height: 100vh;
+
+                align-items: flex-start;
+
+                padding:
+                    28px 16px 30px;
+            }
+
+
+            .register-container {
+
+                width: 100%;
+
+                max-width: none;
+            }
+
+
+            .brand {
+
+                margin-bottom: 22px;
+            }
+
+
+            .brand-name {
+
+                font-size: 21px;
+            }
+
+
+            .brand-subtitle {
+
+                font-size: 9px;
+            }
+
+
+            .register-card {
+
+                padding:
+                    24px 18px 20px;
+
+                border-radius: 8px;
+            }
+
+
+            .card-title {
+
+                font-size: 23px;
+            }
+
+
+            .card-description {
+
+                font-size: 9px;
+
+                margin-bottom: 19px;
+            }
+
+
+            .form {
+
+                gap: 13px;
+            }
+
+
+            .form-label {
+
+                font-size: 9px;
+            }
+
+
+            .input {
+
+                height: 44px;
+
+                font-size: 10px;
+
+                padding-left: 35px;
+            }
+
+
+            .input-icon {
+
+                left: 11px;
+            }
+
+
+            .password-toggle {
+
+                right: 10px;
+
+                width: 22px;
+
+                height: 22px;
+            }
+
+
+            .submit-button {
+
+                height: 45px;
+
+                margin-top: 5px;
+
+                font-size: 10px;
+            }
+
+
+            .login-link {
+
+                margin-top: 14px;
+
+                font-size: 9px;
+            }
+        }
+
+
+        /* =====================================================
+           TELAS MUITO PEQUENAS
+        ===================================================== */
+
+        @media (max-width: 350px) {
+
+            .page {
+
+                padding-left: 12px;
+
+                padding-right: 12px;
+            }
+
+
+            .register-card {
+
+                padding-left: 15px;
+
+                padding-right: 15px;
+            }
+
+
+            .brand-name {
+
+                font-size: 20px;
+            }
+
+
+            .card-title {
+
+                font-size: 21px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="page">
+
+        <section class="register-container">
+
+
+            <!-- MARCA -->
+
+            <header class="brand">
+
+                <div class="brand-name">
+
+                    <span class="brand-icon">
+                        ✂
+                    </span>
+
+                    <span>
+                        Salão Fácil
+                    </span>
+
+                </div>
+
+
+                <p class="brand-subtitle">
+                    Seu horário, do seu jeito.
+                </p>
+
+            </header>
+
+
+            <!-- CARD DE CADASTRO -->
+
+            <div class="register-card">
+
+                <h1 class="card-title">
+                    Crie sua conta
+                </h1>
+
+
+                <p class="card-description">
+
+                    Cadastre-se para agendar seus procedimentos de forma
+                    rápida e fácil.
+
+                </p>
+
+
+                <form
+                    class="form"
+                    id="registerForm"
+                    novalidate
+                >
+
+
+                    <!-- NOME -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="form-label"
+                            for="name"
+                        >
+                            Nome
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <svg
+                                class="input-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            >
+
+                                <circle
+                                    cx="12"
+                                    cy="8"
+                                    r="3.5"
+                                />
+
+                                <path
+                                    d="M5 20c.8-3.3 3.2-5 7-5s6.2 1.7 7 5"
+                                />
+
+                            </svg>
+
+
+                            <input
+                                class="input"
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Digite seu nome completo"
+                                autocomplete="name"
+                            >
+
+                        </div>
+
+
+                        <span class="error-message">
+                            Informe seu nome completo.
+                        </span>
+
+                    </div>
+
+
+                    <!-- TELEFONE -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="form-label"
+                            for="phone"
+                        >
+                            Telefone
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <svg
+                                class="input-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            >
+
+                                <path
+                                    d="M7 3h3l1.2 4-2 1.5a15 15 0 0 0 6.3 6.3l1.5-2 4 1.2v3c0 1.1-.9 2-2 2C11.3 19 5 12.7 5 5c0-1.1.9-2 2-2Z"
+                                />
+
+                            </svg>
+
+
+                            <input
+                                class="input"
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="(00) 00000-0000"
+                                autocomplete="tel"
+                            >
+
+                        </div>
+
+
+                        <span class="error-message">
+                            Informe um telefone válido.
+                        </span>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="form-label"
+                            for="email"
+                        >
+                            E-mail
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <svg
+                                class="input-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            >
+
+                                <rect
+                                    x="3"
+                                    y="5"
+                                    width="18"
+                                    height="14"
+                                    rx="2"
+                                />
+
+                                <path
+                                    d="m3 7 9 6 9-6"
+                                />
+
+                            </svg>
+
+
+                            <input
+                                class="input"
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Digite seu e-mail"
+                                autocomplete="email"
+                            >
+
+                        </div>
+
+
+                        <span class="error-message">
+                            Digite um e-mail válido.
+                        </span>
+
+                    </div>
+
+
+                    <!-- SENHA -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="form-label"
+                            for="password"
+                        >
+                            Senha
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <svg
+                                class="input-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            >
+
+                                <rect
+                                    x="4"
+                                    y="10"
+                                    width="16"
+                                    height="11"
+                                    rx="2"
+                                />
+
+                                <path
+                                    d="M8 10V7a4 4 0 0 1 8 0v3"
+                                />
+
+                            </svg>
+
+
+                            <input
+                                class="input password-input"
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Crie uma senha"
+                                autocomplete="new-password"
+                            >
+
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                aria-label="Mostrar senha"
+                                data-target="password"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                >
+
+                                    <path
+                                        d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"
+                                    />
+
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="2.5"
+                                    />
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <span class="error-message">
+                            A senha deve ter pelo menos 6 caracteres.
+                        </span>
+
+                    </div>
+
+
+                    <!-- CONFIRMAR SENHA -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="form-label"
+                            for="confirmPassword"
+                        >
+                            Confirmar senha
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <svg
+                                class="input-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                            >
+
+                                <rect
+                                    x="4"
+                                    y="10"
+                                    width="16"
+                                    height="11"
+                                    rx="2"
+                                />
+
+                                <path
+                                    d="M8 10V7a4 4 0 0 1 8 0v3"
+                                />
+
+                            </svg>
+
+
+                            <input
+                                class="input password-input"
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Digite a senha novamente"
+                                autocomplete="new-password"
+                            >
+
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                aria-label="Mostrar senha"
+                                data-target="confirmPassword"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                >
+
+                                    <path
+                                        d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"
+                                    />
+
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="2.5"
+                                    />
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <span class="error-message">
+                            As senhas não coincidem.
+                        </span>
+
+                    </div>
+
+
+                    <!-- BOTÃO -->
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        Criar conta
+                    </button>
+
+                </form>
+
+
+                <!-- LINK LOGIN -->
+
+                <p class="login-link">
+
+                    Já possui uma conta?
+
+                    <a href="index.html">
+                        Entrar
+                    </a>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =====================================================
+           MOSTRAR / OCULTAR SENHA
+        ===================================================== */
+
+        const passwordButtons =
+            document.querySelectorAll(".password-toggle");
+
+        passwordButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const targetId =
+                    button.getAttribute("data-target");
+
+                const input =
+                    document.getElementById(targetId);
+
+                if (input.type === "password") {
+
+                    input.type = "text";
+
+                    button.setAttribute(
+                        "aria-label",
+                        "Ocultar senha"
+                    );
+
+                } else {
+
+                    input.type = "password";
+
+                    button.setAttribute(
+                        "aria-label",
+                        "Mostrar senha"
+                    );
+                }
+
+            });
+
+        });
+
+
+        /* =====================================================
+           MÁSCARA TELEFONE
+        ===================================================== */
+
+        const phoneInput =
+            document.getElementById("phone");
+
+        phoneInput.addEventListener("input", function () {
+
+            let value = this.value
+                .replace(/\D/g, "")
+                .slice(0, 11);
+
+            if (value.length <= 10) {
+
+                value = value.replace(
+                    /^(\d{2})(\d)/,
+                    "($1) $2"
+                );
+
+                value = value.replace(
+                    /(\d{4})(\d)/,
+                    "$1-$2"
+                );
+
+            } else {
+
+                value = value.replace(
+                    /^(\d{2})(\d)/,
+                    "($1) $2"
+                );
+
+                value = value.replace(
+                    /(\d{5})(\d)/,
+                    "$1-$2"
+                );
+            }
+
+            this.value = value;
+
+        });
+
+
+        /* =====================================================
+           VALIDAÇÃO
+        ===================================================== */
+
+        const form =
+            document.getElementById("registerForm");
+
+        function setError(input, message) {
+
+            const group =
+                input.closest(".form-group");
+
+            group.classList.add("error");
+
+            group.querySelector(
+                ".error-message"
+            ).textContent = message;
+
+        }
+
+
+        function clearError(input) {
+
+            const group =
+                input.closest(".form-group");
+
+            group.classList.remove("error");
+
+        }
+
+
+        function validateName() {
+
+            const input =
+                document.getElementById("name");
+
+            const value =
+                input.value.trim();
+
+            if (!value) {
+
+                setError(
+                    input,
+                    "Informe seu nome completo."
+                );
+
+                return false;
+            }
+
+            if (value.split(" ").length < 2) {
+
+                setError(
+                    input,
+                    "Digite nome e sobrenome."
+                );
+
+                return false;
+            }
+
+            clearError(input);
+
+            return true;
+        }
+
+
+        function validatePhone() {
+
+            const input =
+                document.getElementById("phone");
+
+            const numbers =
+                input.value.replace(/\D/g, "");
+
+            if (!numbers) {
+
+                setError(
+                    input,
+                    "Informe seu telefone."
+                );
+
+                return false;
+            }
+
+            if (numbers.length < 10) {
+
+                setError(
+                    input,
+                    "Informe um telefone válido."
+                );
+
+                return false;
+            }
+
+            clearError(input);
+
+            return true;
+        }
+
+
+        function validateEmail() {
+
+            const input =
+                document.getElementById("email");
+
+            const value =
+                input.value.trim();
+
+            const emailRegex =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!value) {
+
+                setError(
+                    input,
+                    "Informe seu e-mail."
+                );
+
+                return false;
+            }
+
+            if (!emailRegex.test(value)) {
+
+                setError(
+                    input,
+                    "Digite um e-mail válido."
+                );
+
+                return false;
+            }
+
+            clearError(input);
+
+            return true;
+        }
+
+
+        function validatePassword() {
+
+            const input =
+                document.getElementById("password");
+
+            const value =
+                input.value;
+
+            if (!value) {
+
+                setError(
+                    input,
+                    "Informe uma senha."
+                );
+
+                return false;
+            }
+
+            if (value.length < 6) {
+
+                setError(
+                    input,
+                    "A senha deve ter pelo menos 6 caracteres."
+                );
+
+                return false;
+            }
+
+            clearError(input);
+
+            return true;
+        }
+
+
+        function validateConfirmPassword() {
+
+            const input =
+                document.getElementById("confirmPassword");
+
+            const password =
+                document.getElementById("password");
+
+            if (!input.value) {
+
+                setError(
+                    input,
+                    "Confirme sua senha."
+                );
+
+                return false;
+            }
+
+            if (input.value !== password.value) {
+
+                setError(
+                    input,
+                    "As senhas não coincidem."
+                );
+
+                return false;
+            }
+
+            clearError(input);
+
+            return true;
+        }
+
+
+        /* =====================================================
+           SUBMIT
+        ===================================================== */
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const nameValid =
+                validateName();
+
+            const phoneValid =
+                validatePhone();
+
+            const emailValid =
+                validateEmail();
+
+            const passwordValid =
+                validatePassword();
+
+            const confirmValid =
+                validateConfirmPassword();
+
+            if (
+                nameValid &&
+                phoneValid &&
+                emailValid &&
+                passwordValid &&
+                confirmValid
+            ) {
+
+                alert("Conta criada com sucesso!");
+
+                // Aqui futuramente você poderá
+                // enviar os dados para seu backend.
+
+            }
+
+        });
+
+
+        /* =====================================================
+           VALIDAR AO SAIR DO CAMPO
+        ===================================================== */
+
+        document
+            .getElementById("name")
+            .addEventListener("blur", validateName);
+
+        document
+            .getElementById("phone")
+            .addEventListener("blur", validatePhone);
+
+        document
+            .getElementById("email")
+            .addEventListener("blur", validateEmail);
+
+        document
+            .getElementById("password")
+            .addEventListener("blur", validatePassword);
+
+        document
+            .getElementById("confirmPassword")
+            .addEventListener(
+                "blur",
+                validateConfirmPassword
+            );
+
+    </script>
+
+</body>
+
+</html>

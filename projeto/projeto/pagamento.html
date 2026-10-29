@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Salão Fácil - Pagamento</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111111;
+            color: #F6F1ED;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #292929;
+        }
+
+        .logo {
+            color: #D9A6A0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .voltar {
+            color: #F6F1ED;
+            text-decoration: none;
+            border: 1px solid #333;
+            padding: 10px 16px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            margin: 40px auto 60px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .titulo h1 {
+            font-family: Georgia, serif;
+            font-weight: normal;
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .titulo p {
+            color: #99918D;
+            line-height: 1.6;
+        }
+
+        .secao {
+            background: #181818;
+            border: 1px solid #292929;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 18px;
+        }
+
+        .secao h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .linha {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #292929;
+            line-height: 1.5;
+        }
+
+        .linha:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #99918D;
+            font-size: 14px;
+        }
+
+        .valor {
+            text-align: right;
+            overflow-wrap: anywhere;
+            font-size: 14px;
+        }
+
+        .total .valor {
+            color: #D9A6A0;
+            font-weight: bold;
+        }
+
+        .adiantamento {
+            text-align: center;
+            padding: 25px 15px;
+            background: #211b1c;
+            border: 1px solid #4a3032;
+            border-radius: 10px;
+            margin-top: 18px;
+        }
+
+        .adiantamento p {
+            color: #cfc7c3;
+            font-size: 14px;
+        }
+
+        .adiantamento h3 {
+            color: #D9A6A0;
+            font-size: 38px;
+            margin: 12px 0;
+        }
+
+        .restante {
+            color: #99918D;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .pix-intro {
+            color: #99918D;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .pix-chave {
+            background: #222222;
+            border: 1px solid #393939;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            overflow-wrap: anywhere;
+            line-height: 1.6;
+            user-select: text;
+        }
+
+        .pix-chave strong {
+            color: #D9A6A0;
+            display: block;
+            font-size: 12px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .botao {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .botao:hover {
+            opacity: 0.88;
+        }
+
+        .botao-pix {
+            background: #D9A6A0;
+            color: #111111;
+        }
+
+        .botao-whatsapp {
+            background: #25D366;
+            color: #102116;
+            margin-top: 15px;
+        }
+
+        .mensagem {
+            min-height: 20px;
+            color: #D9A6A0;
+            font-size: 13px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .aviso {
+            color: #99918D;
+            font-size: 12px;
+            line-height: 1.7;
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .sem-agendamento {
+            display: none;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .sem-agendamento a {
+            display: inline-block;
+            color: #D9A6A0;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #292929;
+            color: #777;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .container {
+                width: 92%;
+                margin-top: 28px;
+            }
+
+            .titulo h1 {
+                font-size: 29px;
+            }
+
+            .secao {
+                padding: 20px;
+            }
+
+            .adiantamento h3 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✂ Salão Fácil</div>
+    <a href="agendamento.html" class="voltar">← Voltar</a>
+</header>
+
+<main class="container">
+
+    <div class="titulo">
+        <h1>Finalize seu agendamento</h1>
+        <p>Confira os dados e realize o pagamento do adiantamento.</p>
+    </div>
+
+    <div id="conteudoPagamento">
+
+        <section class="secao">
+            <h2>Resumo do agendamento</h2>
+
+            <div class="linha">
+                <span class="label">Serviço</span>
+                <span class="valor" id="servico">—</span>
+            </div>
+
+            <div class="linha">
+                <span class="label">Personalização</span>
+                <span class="valor" id="personalizacao">—</span>
+            </div>
+
+            <div class="linha">
+                <span class="label">Data</span>
+                <span class="valor" id="data">—</span>
+            </div>
+
+            <div class="linha">
+                <span class="label">Horário</span>
+                <span class="valor" id="horario">—</span>
+            </div>
+
+            <div class="linha total">
+                <span class="label">Valor total</span>
+                <span class="valor" id="valorTotal">R$ 0,00</span>
+            </div>
+
+            <div class="adiantamento">
+                <p>Adiantamento de 30%</p>
+                <h3 id="valorAdiantamento">R$ 0,00</h3>
+                <p>Valor a pagar antecipadamente via Pix</p>
+                <p class="restante">
+                    Restante do atendimento:
+                    <strong id="valorRestante">R$ 0,00</strong>
+                </p>
+            </div>
+        </section>
+
+        <section class="secao">
+            <h2>Pagamento via Pix</h2>
+
+            <p class="pix-intro">
+                Copie a chave Pix abaixo ou selecione o texto
+                para copiá-lo manualmente. Depois, abra o aplicativo
+                do seu banco e realize o pagamento.
+            </p>
+
+            <div class="pix-chave">
+                <strong>Chave Pix da profissional</strong>
+                <span id="chavePix"></span>
+            </div>
+
+            <button class="botao botao-pix" id="copiarPix"
+                    type="button" onclick="copiarChavePix()">
+                Copiar chave Pix
+            </button>
+
+            <p class="mensagem" id="mensagemPix" aria-live="polite"></p>
+
+            <a class="botao botao-whatsapp" id="botaoWhatsApp"
+               href="#" target="_blank" rel="noopener noreferrer">
+                Enviar comprovante pelo WhatsApp
+            </a>
+
+            <p class="aviso">
+                Após realizar o Pix, envie o comprovante à profissional.
+                O agendamento só estará confirmado após a confirmação
+                do pagamento pela profissional.
+            </p>
+        </section>
+
+    </div>
+
+    <section class="secao sem-agendamento" id="semAgendamento">
+        <h2>Nenhum agendamento encontrado</h2>
+        <p>
+            Selecione um serviço, uma personalização, uma data
+            e um horário antes de acessar o pagamento.
+        </p>
+        <a href="agendamento.html">Voltar para o agendamento</a>
+    </section>
+
+</main>
+
+<footer>
+    Salão Fácil © 2026 — Seu momento de beleza.
+</footer>
+
+<script>
+    /*
+      CONFIGURAÇÕES DA PROFISSIONAL
+
+      Substitua os valores de exemplo pelos dados reais.
+      O número do WhatsApp deve conter código do país e DDD,
+      somente números. Exemplo de formato: 5551999999999.
+    */
+
+    const CHAVE_PIX = "ab20f795-bf2d-471d-900f-eaeb3dcf6b39L";
+    const WHATSAPP_PROFISSIONAL = "5551991050250";
+
+    const moeda = valor =>
+        Number(valor).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+
+    const agendamentoSalvo =
+        localStorage.getItem("agendamentoSalaoFacil");
+
+    const conteudo =
+        document.getElementById("conteudoPagamento");
+
+    const semAgendamento =
+        document.getElementById("semAgendamento");
+
+    let agendamento = null;
+
+    try {
+        agendamento = agendamentoSalvo
+            ? JSON.parse(agendamentoSalvo)
+            : null;
+    } catch (erro) {
+        agendamento = null;
+    }
+
+    if (
+        !agendamento ||
+        typeof agendamento.valor !== "number" ||
+        !Number.isFinite(agendamento.valor) ||
+        agendamento.valor < 0
+    ) {
+        conteudo.style.display = "none";
+        semAgendamento.style.display = "block";
+    } else {
+        const total = agendamento.valor;
+        const adiantamento = Math.round(total * 30) / 100;
+        const restante = total - adiantamento;
+
+        document.getElementById("servico").textContent =
+            agendamento.servico || "—";
+
+        document.getElementById("personalizacao").textContent =
+            agendamento.personalizacao || "—";
+
+        document.getElementById("data").textContent =
+            agendamento.data || "—";
+
+        document.getElementById("horario").textContent =
+            agendamento.horario || "—";
+
+        document.getElementById("valorTotal").textContent =
+            moeda(total);
+
+        document.getElementById("valorAdiantamento").textContent =
+            moeda(adiantamento);
+
+        document.getElementById("valorRestante").textContent =
+            moeda(restante);
+
+        document.getElementById("chavePix").textContent =
+            CHAVE_PIX;
+
+        const mensagem =
+            "Olá! Realizei o agendamento pelo Salão Fácil.\n\n" +
+            "Serviço: " + (agendamento.servico || "—") + "\n" +
+            "Personalização: " +
+                (agendamento.personalizacao || "—") + "\n" +
+            "Data: " + (agendamento.data || "—") + "\n" +
+            "Horário: " + (agendamento.horario || "—") + "\n" +
+            "Valor total: " + moeda(total) + "\n" +
+            "Adiantamento de 30%: " + moeda(adiantamento) + "\n\n" +
+            "Segue o comprovante do Pix para confirmação.";
+
+        const numeroValido = /^\d{12,15}$/.test(
+            WHATSAPP_PROFISSIONAL
+        );
+
+        const botaoWhatsApp =
+            document.getElementById("botaoWhatsApp");
+
+        if (numeroValido) {
+            botaoWhatsApp.href =
+                "https://wa.me/" + WHATSAPP_PROFISSIONAL +
+                "?text=" + encodeURIComponent(mensagem);
+        } else {
+            botaoWhatsApp.addEventListener("click", function(event) {
+                event.preventDefault();
+                alert("Configure o número do WhatsApp da profissional no código.");
+            });
+        }
+    }
+
+    async function copiarChavePix() {
+        const texto = CHAVE_PIX;
+        const mensagem = document.getElementById("mensagemPix");
+
+        if (
+            !texto ||
+              /*
+      Insira a chave pix da profissional abaixo.
+    */
+            texto === "ab20f795-bf2d-471d-900f-eaeb3dcf6b39"
+        ) {
+            mensagem.textContent =
+                "A profissional ainda precisa cadastrar a chave Pix.";
+            return;
+        }
+
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(texto);
+            } else {
+                const campo = document.createElement("textarea");
+                campo.value = texto;
+                campo.style.position = "fixed";
+                campo.style.opacity = "0";
+                document.body.appendChild(campo);
+                campo.select();
+
+                const copiou = document.execCommand("copy");
+                campo.remove();
+
+                if (!copiou) {
+                    throw new Error("Não foi possível copiar.");
+                }
+            }
+
+            mensagem.textContent = "Chave Pix copiada com sucesso!";
+        } catch (erro) {
+            mensagem.textContent =
+                "Não foi possível copiar automaticamente. Selecione e copie a chave manualmente.";
+        }
+    }
+</script>
+
+</body>
+</html>
