@@ -1,0 +1,89 @@
+
+/* ==========================================
+   MENU COMPARTILHADO - SALÃO FÁCIL
+   Estilização do cabeçalho de todas as páginas
+========================================== */
+
+/* CABEÇALHO FIXO NO TOPO */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 75px;
+    padding: 0 7%;
+    background-color: #111111;
+    border-bottom: 1px solid rgba(217, 166, 160, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+/* LOGO */
+.menu-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #F6F1ED;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.menu-logo-icon {
+    color: #D9A6A0;
+    font-size: 25px;
+}
+
+/* LINKS DO MENU */
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.site-nav a {
+    color: #F6F1ED;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.site-nav a:hover {
+    color: #D9A6A0;
+}
+
+/* BOTÃO ENTRAR */
+.site-nav .menu-login {
+    border: 1px solid #D9A6A0;
+    border-radius: 25px;
+    padding: 10px 23px;
+}
+
+.site-nav .menu-login:hover {
+    background-color: #D9A6A0;
+    color: #111111;
+}
+
+/* AJUSTES PARA CELULAR */
+@media (max-width: 800px) {
+    .site-header {
+        min-height: 70px;
+        padding: 0 5%;
+    }
+
+    .menu-logo {
+        font-size: 20px;
+    }
+
+    .site-nav {
+        gap: 15px;
+    }
+
+    .site-nav a:not(.menu-login) {
+        display: none;
+    }
+}

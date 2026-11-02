@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+      <!-- CSS DO MENU COMPARTILHADO -->
+      <link rel="stylesheet" href="css/menu.css"> 
 
     <title>Salão Fácil - Agendamento</title>
 
@@ -293,6 +296,7 @@
             background: #050505;
             border: 1px solid #555555;
         }
+        
 
         /* ==============================
            COMENTÁRIO
@@ -301,7 +305,8 @@
         textarea {
             width: 100%;
             min-height: 110px;
-            resize: vertical;
+            resize: none;
+             box-sizing: border-box;
             background: #222222;
             border: 1px solid #333333;
             border-radius: 8px;
@@ -451,7 +456,7 @@
         .continuar {
             width: 100%;
             border: none;
-            border-radius: 8px;
+            border-radius: 30px;
             padding: 16px;
             background: #D9A6A0;
             color: #111111;
@@ -515,6 +520,8 @@
 </head>
 
 <body>
+      <!-- Carrega o menu compartilhado -->
+      <script src="js/menu.js"></script>
 
     <!-- ==============================
          HEADER
@@ -641,7 +648,14 @@
             <textarea
                 id="comentario"
                 placeholder="Escreva alguma preferência ou especificação para o seu atendimento..."
-            ></textarea>
+                maxlength="150"
+             ></textarea>
+
+             <!-- Contador de caracteres -->
+                 <div class="contador-caracteres">
+                   <span id="contadorComentario">0</span>/150 caracteres
+                 </div>
+                
 
         </section>
 
@@ -823,7 +837,7 @@
         cilios: [
 
             {
-                nome: "Cílios de Tufo",
+                nome: "Volumes",
                 semPreco: true
             }
 
@@ -876,7 +890,7 @@
            CÍLIOS
         ============================== */
 
-        "Cílios de Tufo": {
+        "Volumes": {
 
             tipo: "opcoes",
 
@@ -1156,6 +1170,7 @@
 
                 ["preto", "Preto"]
 
+                
             ];
 
 
@@ -1620,97 +1635,60 @@
        CONTINUAR
     ============================== */
 
-    function continuarAgendamento() {
+ 
+function continuarAgendamento() {
+    const comentario = document.getElementById("comentario").value;
 
-        const comentario =
-            document.getElementById(
-                "comentario"
-            ).value;
-
-
-        if (!servicoSelecionado) {
-
-            alert(
-                "Selecione um serviço."
-            );
-
-            return;
-
-        }
-
-
-        if (!personalizacaoSelecionada) {
-
-            alert(
-                "Escolha uma personalização."
-            );
-
-            return;
-
-        }
-
-
-        if (!dataSelecionada) {
-
-            alert(
-                "Escolha uma data."
-            );
-
-            return;
-
-        }
-
-
-        if (!horarioSelecionado) {
-
-            alert(
-                "Escolha um horário."
-            );
-
-            return;
-
-        }
-
-
-        const valorTotal =
-            precoSelecionado +
-            precoPersonalizacao;
-
-
-        const agendamento = {
-
-            servico:
-                servicoSelecionado,
-
-            personalizacao:
-                personalizacaoSelecionada,
-
-            comentario:
-                comentario,
-
-            data:
-                dataSelecionada,
-
-            horario:
-                horarioSelecionado,
-
-            valor:
-                valorTotal
-
-        };
-
-
-        console.log(
-            "Agendamento:",
-            agendamento
-        );
-
-
-        alert(
-            "Agendamento selecionado com sucesso!"
-        );
-
+    if (!servicoSelecionado) {
+        alert("Selecione um serviço.");
+        return;
     }
+
+    if (!personalizacaoSelecionada) {
+        alert("Escolha uma personalização.");
+        return;
+    }
+
+    if (!dataSelecionada) {
+        alert("Escolha uma data.");
+        return;
+    }
+
+    if (!horarioSelecionado) {
+        alert("Escolha um horário.");
+        return;
+    }
+
+    const valorTotal = precoSelecionado + precoPersonalizacao;
+
+    const agendamento = {
+        servico: servicoSelecionado,
+        personalizacao: personalizacaoSelecionada,
+        comentario: comentario,
+        data: dataSelecionada,
+        horario: horarioSelecionado,
+        valor: valorTotal
+    };
+
+    // Salva os dados antes de verificar o login
+    localStorage.setItem(
+        "agendamentoSalaoFacil",
+        JSON.stringify(agendamento)
+    );
+
+    // Verifica se existe indicação de login
+    const clienteLogado = localStorage.getItem("clienteLogado");
+
+    if (clienteLogado !== "true") {
+        alert("Para continuar com o agendamento, faça login ou crie sua conta.");
+        localStorage.setItem("voltarParaPagamento", "true");
+        window.location.href = "index.html";
+        return;
+    }
+
+    window.location.href = "pagamento.html";
+}
+
 
 
     /* ==============================
@@ -1727,6 +1705,15 @@
 
     </script>
 
-</body>
+    <script>
+       const comentario = document.getElementById("comentario");
+       const contadorComentario = document.getElementById("contadorComentario");
 
+     comentario.addEventListener("input", function () {
+     contadorComentario.textContent = comentario.value.length;
+     });
+    </script>
+</body>
+ 
+    
 </html>
